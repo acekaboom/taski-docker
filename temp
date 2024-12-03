@@ -1,0 +1,17 @@
+# До этой строки — остальная часть секции server
+    location /api/ {
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location /admin/ {
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location / {
+        root   /var/www/taski;
+        index  index.html index.htm;
+        try_files $uri /index.html =404;
+    }
+# Ниже идёт часть про certbot
